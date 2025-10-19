@@ -1,0 +1,68 @@
+R1>en
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#ipv6 unicast-routing
+R1(config)#int g0/0
+R1(config-if)#ipv6 address 2025:cafe:73c0:1::1/64
+R1(config-if)#no sh
+R1(config-if)#exit
+R1(config)#int g0/1
+R1(config-if)#ipv6 address 2025:cafe:73c0:2::1/64
+R1(config-if)#no sh
+R1(config-if)#exit
+R1(config)#int g0/2
+R1(config-if)#ipv6 address 2024:cafe:c0de:1::1/64
+R1(config-if)#no sh
+R1(config-if)#end
+R1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+R1#show ipv6 interface brief
+GigabitEthernet0/0         [up/up]
+    FE80::203:E4FF:FEB1:1301
+    2025:CAFE:73C0:1::1
+GigabitEthernet0/1         [up/up]
+    FE80::203:E4FF:FEB1:1302
+    2025:CAFE:73C0:2::1
+GigabitEthernet0/2         [up/up]
+    FE80::203:E4FF:FEB1:1303
+    2024:CAFE:C0DE:1::1
+Serial0/0/0                [administratively down/down]
+    unassigned
+Serial0/0/1                [administratively down/down]
+    unassigned
+Vlan1                      [administratively down/down]
+    unassigned
+R1#
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#int g0/0
+R1(config-if)#ipv6 address fe80::1 link-local
+R1(config-if)#exit
+R1(config)#int g0/1
+R1(config-if)#ipv6 address fe80::2 link-local
+R1(config-if)#exit
+R1(config)#int g0/2
+R1(config-if)#ipv6 address fe80::3 link-local
+R1(config-if)#exit
+R1(config)#end
+R1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+R1#show ipv6 interface brief
+GigabitEthernet0/0         [up/up]
+    FE80::1
+    2025:CAFE:73C0:1::1
+GigabitEthernet0/1         [up/up]
+    FE80::2
+    2025:CAFE:73C0:2::1
+GigabitEthernet0/2         [up/up]
+    FE80::3
+    2024:CAFE:C0DE:1::1
+Serial0/0/0                [administratively down/down]
+    unassigned
+Serial0/0/1                [administratively down/down]
+    unassigned
+Vlan1                      [administratively down/down]
+    unassigned
+R1#
